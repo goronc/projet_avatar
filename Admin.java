@@ -1,4 +1,4 @@
-public class Admin { yolo
+public class Admin {
     
     private int id_admin;
     
