@@ -66,11 +66,8 @@ public class Bulletin {
         }
         System.out.println(coef);
         if(cpt>=coef){
-            for(int j =0;j<coef;j++){
-                System.out.println("lol");
-                this.supr_note(note,matiere,coef);
-                this.ajout_note(new_note, matiere, coef);
-            } 
+            this.supr_note(note,matiere,coef);
+            this.ajout_note(new_note, matiere, coef);
         }
         else{
             System.out.println("La note n'existe pas coef trop eleve");
