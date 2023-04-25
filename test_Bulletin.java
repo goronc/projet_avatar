@@ -1,6 +1,3 @@
-import java.util.HashMap;
-import java.util.ArrayList;
-
 public class test_Bulletin {
     public static void main(String[] args) {
         Bulletin bulletin = new Bulletin();

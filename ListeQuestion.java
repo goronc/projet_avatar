@@ -12,8 +12,16 @@ public class ListeQuestion {
         return List_question;
     }
 
+    public Question getListeQuestions(int indice) {
+        return this.List_question.get(indice);
+    }
+
     public void setListeQuestions(ArrayList<Question> newList_question) {
         List_question = newList_question;
+    }
+
+    public int size() {
+        return this.List_question.size();
     }
 
     public void AddQuestion(Question question) {
