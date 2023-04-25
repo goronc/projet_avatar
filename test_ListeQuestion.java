@@ -23,13 +23,19 @@ public class test_ListeQuestion {
         liste.AddQuestion(q2);
     
         // Affichage de la liste
-        System.out.println(liste);
+        System.out.println(liste.toString());
+
+        // On essaye d'ajouter une question qui existe déjà
+        liste.AddQuestion(q2);
     
         // Suppression d'une question
         liste.SupprQuestion(q1);
+
+        // On essaye d'ajouter une question qui a été supprimé
+        liste.AddQuestion(q1);
     
         // Affichage de la liste mise à jour
-        System.out.println(liste);
+        System.out.println(liste.toString());
     }
     
 }

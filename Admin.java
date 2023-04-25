@@ -26,8 +26,8 @@ public class Admin {
         List_question.AddQuestion(question);
     }
 
-    public void modif_question(Question question, ListeQuestion List_question) {
-        List_question.ModifQuestion(question);
+    public void modif_question(Question question, ListeQuestion List_question, Question new_question) {
+        List_question.ModifQuestion(question, new_question);
     }
 
     public void del_question(Question question, ListeQuestion List_question) {
