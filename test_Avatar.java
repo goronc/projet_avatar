@@ -31,7 +31,7 @@ public class test_avatar {
         Avatar avatar2 = new Avatar();
         Avatar avatar3 = new Avatar();
 
-        System.out.println("ALOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+
         avatar2.setPtsVie(10);
         avatar3.setPtsVie(10);
         System.out.println(avatar2.getPtsVie());
