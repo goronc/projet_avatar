@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class test_avatar {
+public class test_Avatar {
     public static void main(String[] args){
 
 
