@@ -35,8 +35,8 @@ public class Admin {
     }
 
     public String toString() {
-        return "Admin{ " +
+        return "Admin : {" +
                 "id_admin = " + id_admin +
-                " }";
+                "}";
     }    
 }

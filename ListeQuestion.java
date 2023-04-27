@@ -30,6 +30,7 @@ public class ListeQuestion {
         }
         else {
             List_question.add(question);
+            System.out.println("La question a bien été ajouté");
         }
     }
 
@@ -37,6 +38,7 @@ public class ListeQuestion {
         if (List_question.contains(question)) {
             List_question.remove(question);
             question = null;
+            System.out.println("La question a bien été supprimé");
         }
         else {
             System.out.println("La question n'existe pas");
@@ -50,6 +52,7 @@ public class ListeQuestion {
                     List_question.set(i, new_question);
                 }
             }
+            System.out.println("La question a bien été modifié");
         }
         else {
             System.out.println("La question n'existe pas");
@@ -57,8 +60,7 @@ public class ListeQuestion {
     }
 
     public String toString() {
-        return "ListeQuestion{ " +
-                "List_question = " + List_question +
-                " }";
+        return "List_question = {" + List_question + 
+                "}";
     }
 }

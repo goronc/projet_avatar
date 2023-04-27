@@ -5,13 +5,16 @@ public class Bulletin {
 
     private HashMap<Matiere, ArrayList<Integer>> bulletin;
 
+
     public Bulletin() {
         bulletin = new HashMap<Matiere, ArrayList<Integer>>();
     }
 
+
     public Bulletin(HashMap<Matiere, ArrayList<Integer>> new_bulletin) {
         bulletin = new_bulletin;
     }
+
 
     public void ajout_note(int note,Matiere matiere,int coef){
 
@@ -29,6 +32,7 @@ public class Bulletin {
         
 
     }
+
 
     public void supr_note(int note,Matiere matiere,int coef){
         int cpt = 0;
@@ -57,6 +61,7 @@ public class Bulletin {
         }
     }
 
+
     public void modif_note(int note,Matiere matiere,int coef,int new_note){
         int cpt = 0;
         for(int i =0;i<bulletin.get(matiere).size();i++){
@@ -64,7 +69,6 @@ public class Bulletin {
                 cpt = cpt + 1;
             }
         }
-        System.out.println(coef);
         if(cpt>=coef){
             this.supr_note(note,matiere,coef);
             this.ajout_note(new_note, matiere, coef);
@@ -85,9 +89,6 @@ public class Bulletin {
     }
 
 
-
-
-
     public String toString() {
         StringBuilder res = new StringBuilder();
         res.append("Bulletin : {");
@@ -97,6 +98,4 @@ public class Bulletin {
         res.append(" }");
         return res.toString();
     }
-
-
 }

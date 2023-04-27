@@ -65,12 +65,12 @@ public class Question{
     }
 
     public String toString() {
-        return "Question{ " +
+        return "Question : {" +
                 "intitule = '" + intitule + '\'' +
                 ", reponse_possible = " + reponse_possible +
                 ", reponse_correct = " + reponse_correct +
                 ", nb_pts = " + nb_pts +
                 ", level = " + level +
-                " }";
+                "}";
     }
 }

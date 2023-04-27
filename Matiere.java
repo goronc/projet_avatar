@@ -31,13 +31,8 @@ public class Matiere {
 
     public String toString() {
         return "Matiere = {" +
-                "nom='" + nom + '\'' +
-                ", coef=" + coef +
+                "nom = '" + nom + '\'' +
+                ", coef = " + coef +
                 '}';
     }
-
-
-
-
-
 }
