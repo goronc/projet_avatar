@@ -39,4 +39,8 @@ public class Defi {
         return res_question;
 
     }
+
+    public void envoie_question(Question question,Avatar avatar){
+        avatar.recevoir_question(question);
+    }
 }
