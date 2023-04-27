@@ -9,6 +9,7 @@ public class Avatar {
     private int level;
     private ArrayList<Question> question_attente;
     private ArrayList<LocalDateTime> date_associer;
+    private ArrayList<Avatar> adversaire;
 
     public Avatar() {
         pts_vie = 0;
@@ -17,16 +18,18 @@ public class Avatar {
         level = 0;
         question_attente = new ArrayList<Question>(10);
         date_associer = new ArrayList<LocalDateTime>(10);
+        adversaire = new ArrayList<Avatar>(10);
     }
     
 
-    public Avatar(int newPts_vie, String newPseudo, Bulletin newNote, int newLevel , ArrayList<Question> new_question_attente,ArrayList<LocalDateTime> new_date_associer) {
+    public Avatar(int newPts_vie, String newPseudo, Bulletin newNote, int newLevel , ArrayList<Question> new_question_attente,ArrayList<LocalDateTime> new_date_associer,ArrayList<Avatar> new_adversaire) {
         pts_vie = newPts_vie;
         pseudo = newPseudo;
         note = newNote;
         level = newLevel;
         question_attente = new_question_attente;
         date_associer = new_date_associer;
+        adversaire = new_adversaire;
     }
 
     public int getPtsVie() {
@@ -40,6 +43,11 @@ public class Avatar {
     public ArrayList<LocalDateTime> getDateAssocier() {
         return date_associer;
     }
+
+    public ArrayList<LocalDateTime> getAdversaire() {
+        return date_associer;
+    }
+
 
     public void setBulletin(ArrayList<Question> new_question_attente) {
         question_attente = new_question_attente;
@@ -73,6 +81,19 @@ public class Avatar {
         level = newLevel;
     }
 
+    public void setQuestionAttente(ArrayList<Question> new_question_attente) {
+        question_attente = new_question_attente;
+    }
+
+    public void setDateAssocier(ArrayList<LocalDateTime> new_date_associer) {
+        date_associer = new_date_associer;
+    }
+
+    public void setAdversaire(ArrayList<Avatar> new_adversaire) {
+        adversaire = new_adversaire;
+    }
+
+
     public void Ajouter_Note(int newNote, Matiere matiere, int coef) {
         note.ajout_note(newNote, matiere, coef);
 
@@ -80,12 +101,14 @@ public class Avatar {
 
     public void supr_question(Question question) {
         date_associer.remove(question_attente.indexOf(question));
+        adversaire.remove(question_attente.indexOf(question));
         question_attente.remove(question);
         
     }
 
-    public void ajout_question(Question question) {
+    public void ajout_question(Question question,Avatar avatar) {
         question_attente.add(question);
+        adversaire.add(avatar);
         date_associer.add(LocalDateTime.now());
     }
 
@@ -103,12 +126,12 @@ public class Avatar {
         }
     }
 
-    public void recevoir_question(Question question) {
+    public void recevoir_question(Question question, Avatar avatar) {
         if (question_attente.contains(question)) {
             System.out.println("La question est deja en attente");
         } 
         else {
-            ajout_question(question);
+            ajout_question(question,avatar);
         }
     }
 
@@ -120,6 +143,7 @@ public class Avatar {
                 Question question = question_attente.get(indice);
                 System.out.println("Vous avez été trop lent pour répondre a la question : " + question.getIntitule() +" vous avez donc perdu "+ question.getNbPts() +" point de vie");
                 this.diminuer_pv(question.getNbPts());
+                adversaire.get(question_attente.indexOf(question)).augmenter_pv(question.getNbPts());
                 supr_question(question);
 
             }
@@ -148,12 +172,14 @@ public class Avatar {
         if(reponse_utilisateur == question.getReponseCorrect()){
             System.out.println("Cette reponse etait juste ;) vous gagnez " + question.getNbPts() + " points de vie ");
             this.augmenter_pv(question.getNbPts());
+            adversaire.get(question_attente.indexOf(question)).diminuer_pv(question.getNbPts());
             supr_question(question);
         }
         else{
             System.out.println("Cette reponse etait fausse :( vous perdez " + question.getNbPts() + " points de vie ");
             System.out.println("la réponse etait " + question.getReponsePossible().get(question.getReponseCorrect()));
             this.diminuer_pv(question.getNbPts());
+            adversaire.get(question_attente.indexOf(question)).augmenter_pv(question.getNbPts());
             supr_question(question);
         }
 

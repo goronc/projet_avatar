@@ -41,6 +41,6 @@ public class Defi {
     }
 
     public void envoie_question(Question question,Avatar avatar){
-        avatar.recevoir_question(question);
+        avatar.recevoir_question(question,avatar);
     }
 }

@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class test_Avatar {
+public class test_avatar {
     public static void main(String[] args){
 
 
@@ -26,8 +26,16 @@ public class test_Avatar {
         Question q3 = new Question("Quel est la population modiale ?", reponse_possible3, 1, 6, 1);
 
 
-        // Création d'un avatar
+        // Création d'avatar
         Avatar avatar1 = new Avatar();
+        Avatar avatar2 = new Avatar();
+        Avatar avatar3 = new Avatar();
+
+        System.out.println("ALOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+        avatar2.setPtsVie(10);
+        avatar3.setPtsVie(10);
+        System.out.println(avatar2.getPtsVie());
+        System.out.println(avatar3.getPtsVie());
 
 
         // Affichage de l'avatar
@@ -35,7 +43,7 @@ public class test_Avatar {
 
 
         // Ajout de question dans la liste d'attente
-        avatar1.ajout_question(q1);
+        avatar1.ajout_question(q1,avatar2);
 
 
         // Affichage des questions en attente et des dates associées
@@ -43,21 +51,23 @@ public class test_Avatar {
         System.out.println(avatar1.getDateAssocier().toString());
 
         // Ajout de question dans la liste d'attente
-        avatar1.ajout_question(q2);
+        avatar1.ajout_question(q2,avatar3);
 
 
         // Affichage des questions en attente et des dates associées
         System.out.println(avatar1.getQuestionAttente().toString());
         System.out.println(avatar1.getDateAssocier().toString());
+        System.out.println(avatar1.getAdversaire().toString());
 
 
         // Ajout des question dans la liste d'attente
-        avatar1.ajout_question(q3);
+        avatar1.ajout_question(q3,avatar3);
 
 
         // Affichage des questions en attente et des dates associées
         System.out.println(avatar1.getQuestionAttente().toString());
         System.out.println(avatar1.getDateAssocier().toString());
+        System.out.println(avatar1.getAdversaire().toString());
 
 
         // Suppression d'une question
@@ -67,6 +77,7 @@ public class test_Avatar {
         // Affichage des question en attente et des dates associées
         System.out.println(avatar1.getQuestionAttente().toString());
         System.out.println(avatar1.getDateAssocier().toString());
+        System.out.println(avatar1.getAdversaire().toString());
 
 
         // On lance une question a faire
@@ -80,5 +91,11 @@ public class test_Avatar {
         // Affichage des question en attente et des dates associées
         System.out.println(avatar1.getQuestionAttente().toString());
         System.out.println(avatar1.getDateAssocier().toString());
+        System.out.println(avatar1.getAdversaire().toString());
+
+        System.out.println(avatar2.getPtsVie());
+        System.out.println(avatar3.getPtsVie());
     }
 }
+
+
