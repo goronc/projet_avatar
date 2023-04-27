@@ -1,7 +1,8 @@
 import java.util.*;
 
-public class test_avatar {
+public class test_Avatar {
     public static void main(String[] args){
+
 
         // Création de quelques questions
         ArrayList<String> reponse_possible = new ArrayList<String>(3);
@@ -24,25 +25,60 @@ public class test_avatar {
         reponse_possible3.add("7 millions");
         Question q3 = new Question("Quel est la population modiale ?", reponse_possible3, 1, 6, 1);
 
+
+        // Création d'un avatar
         Avatar avatar1 = new Avatar();
+
+
+        // Affichage de l'avatar
         System.out.println(avatar1.toString());
 
+
+        // Ajout de question dans la liste d'attente
         avatar1.ajout_question(q1);
-        System.out.println(avatar1.getQuestionAttente().toString());
-        System.out.println(avatar1.getDateAssocier().toString());
-        avatar1.ajout_question(q2);
-        System.out.println(avatar1.getQuestionAttente().toString());
-        System.out.println(avatar1.getDateAssocier().toString());
-        avatar1.ajout_question(q3);
-        System.out.println(avatar1.getQuestionAttente().toString());
-        System.out.println(avatar1.getDateAssocier().toString());
-        avatar1.supr_question(q3);
-        System.out.println(avatar1.getQuestionAttente().toString());
-        System.out.println(avatar1.getDateAssocier().toString());
-        avatar1.faire_question();
-        System.out.println(avatar1.getPtsVie());
+
+
+        // Affichage des questions en attente et des dates associées
         System.out.println(avatar1.getQuestionAttente().toString());
         System.out.println(avatar1.getDateAssocier().toString());
 
+        // Ajout de question dans la liste d'attente
+        avatar1.ajout_question(q2);
+
+
+        // Affichage des questions en attente et des dates associées
+        System.out.println(avatar1.getQuestionAttente().toString());
+        System.out.println(avatar1.getDateAssocier().toString());
+
+
+        // Ajout des question dans la liste d'attente
+        avatar1.ajout_question(q3);
+
+
+        // Affichage des questions en attente et des dates associées
+        System.out.println(avatar1.getQuestionAttente().toString());
+        System.out.println(avatar1.getDateAssocier().toString());
+
+
+        // Suppression d'une question
+        avatar1.supr_question(q3);
+
+
+        // Affichage des question en attente et des dates associées
+        System.out.println(avatar1.getQuestionAttente().toString());
+        System.out.println(avatar1.getDateAssocier().toString());
+
+
+        // On lance une question a faire
+        avatar1.faire_question();
+
+
+        // Affichage des points de vie de l'avatar
+        System.out.println(avatar1.getPtsVie());
+
+
+        // Affichage des question en attente et des dates associées
+        System.out.println(avatar1.getQuestionAttente().toString());
+        System.out.println(avatar1.getDateAssocier().toString());
     }
 }
