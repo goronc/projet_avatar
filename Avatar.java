@@ -187,7 +187,12 @@ public class Avatar {
         }
         String user_reponse = scanner_reponse.nextLine();
 
-        if(Integer.parseInt(user_reponse) > indice-1 || Integer.parseInt(user_reponse) <= 0){
+        String str2 = "";
+        for(int i=1; i<indice; i++){
+                str2 += Integer.toString(i);
+        }
+
+        if(!str2.contains(user_choice)){
             throw new MauvaisIndice();
         }
 
