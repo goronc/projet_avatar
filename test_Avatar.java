@@ -97,3 +97,5 @@ public class test_Avatar {
         System.out.println(avatar3.getPtsVie());
     }
 }
+
+
