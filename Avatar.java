@@ -11,6 +11,12 @@ public class Avatar {
     private ArrayList<LocalDateTime> date_associer;
     private ArrayList<Avatar> adversaire;
 
+    class MauvaisIndice extends Exception{
+        public String toString(){
+            return "Erreur: Cette Option n'existe pas ";
+        }
+    }
+
     public Avatar() {
         pts_vie = 0;
         pseudo = "Inconnue";
@@ -31,6 +37,7 @@ public class Avatar {
         date_associer = new_date_associer;
         adversaire = new_adversaire;
     }
+
 
     public int getPtsVie() {
         return pts_vie;
@@ -135,7 +142,8 @@ public class Avatar {
         }
     }
 
-    public void faire_question() {
+    public void faire_question() throws MauvaisIndice{
+
         int indice = 0;
         for (LocalDateTime element : date_associer) {
             LocalDateTime now = LocalDateTime.now();
@@ -159,6 +167,16 @@ public class Avatar {
             indice+=1;
         }
         String user_choice = scanner.nextLine();
+
+        String str = "";
+        for(int i=1; i<indice; i++){
+                str += Integer.toString(i);
+        }
+
+        if(!str.contains(user_choice)){
+            throw new MauvaisIndice();
+        }
+
         Question question = question_attente.get(Integer.parseInt(user_choice)-1);
         System.out.println(question.getIntitule());
         System.out.println("Voici les réponses disponible laquel choisissez vous ?");
@@ -168,6 +186,11 @@ public class Avatar {
             indice+=1;
         }
         String user_reponse = scanner_reponse.nextLine();
+
+        if(Integer.parseInt(user_reponse) > indice-1 || Integer.parseInt(user_reponse) <= 0){
+            throw new MauvaisIndice();
+        }
+
         int reponse_utilisateur = Integer.parseInt(user_reponse)-1;
         if(reponse_utilisateur == question.getReponseCorrect()){
             System.out.println("Cette reponse etait juste ;) vous gagnez " + question.getNbPts() + " points de vie ");
@@ -181,13 +204,25 @@ public class Avatar {
             this.diminuer_pv(question.getNbPts());
             adversaire.get(question_attente.indexOf(question)).augmenter_pv(question.getNbPts());
             supr_question(question);
-        }
-
-  
-
-
-            
+        }       
     }
+
+    public void erreur_faire_question() {
+        boolean valide = false;
+        
+            while(!valide){
+                try{
+                    faire_question();
+                    valide = true;
+                }
+                catch(MauvaisIndice mi){
+                    mi.printStackTrace();
+                }
+            }
+                
+            }
+    
+        
 
 
 

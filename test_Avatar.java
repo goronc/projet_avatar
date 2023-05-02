@@ -81,20 +81,20 @@ public class test_Avatar {
 
 
         // On lance une question a faire
-        avatar1.faire_question();
+        avatar1.erreur_faire_question();
 
 
         // Affichage des points de vie de l'avatar
-        System.out.println(avatar1.getPtsVie());
+        // System.out.println(avatar1.getPtsVie());
 
 
-        // Affichage des question en attente et des dates associées
-        System.out.println(avatar1.getQuestionAttente().toString());
-        System.out.println(avatar1.getDateAssocier().toString());
-        System.out.println(avatar1.getAdversaire().toString());
+        // // Affichage des question en attente et des dates associées
+        // System.out.println(avatar1.getQuestionAttente().toString());
+        // System.out.println(avatar1.getDateAssocier().toString());
+        // System.out.println(avatar1.getAdversaire().toString());
 
-        System.out.println(avatar2.getPtsVie());
-        System.out.println(avatar3.getPtsVie());
+        // System.out.println(avatar2.getPtsVie());
+        // System.out.println(avatar3.getPtsVie());
     }
 }
 
