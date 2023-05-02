@@ -60,5 +60,35 @@ public class test_Admin {
         
         // Affichage de la liste de questions
         System.out.println(listeQuestion);
+
+
+        // Création d'avatar
+        Avatar avatar1 = new Avatar();
+        Avatar avatar2 = new Avatar();
+        Avatar avatar3 = new Avatar();
+
+
+        // On attribue des points de vie
+        avatar1.setPtsVie(11);
+        avatar2.setPtsVie(12);
+        avatar3.setPtsVie(13);
+
+
+        // Ajout des avatars à la liste d'avatar
+        admin.addAvatar_toList_avatar(avatar1);
+        admin.addAvatar_toList_avatar(avatar2);
+        admin.addAvatar_toList_avatar(avatar3);
+
+
+        // Affichage de la liste d'avatar
+        System.out.println(admin.getList_avatar());
+
+
+        // Suppression d'un avatar
+        admin.del_avatar(avatar3);
+
+
+        // Affichage de la liste d'avatar
+        System.out.println(admin.getList_avatar());
     }
 }
