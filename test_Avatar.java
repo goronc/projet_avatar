@@ -31,7 +31,7 @@ public class test_Avatar {
         Avatar avatar2 = new Avatar();
         Avatar avatar3 = new Avatar();
 
-
+        avatar1.setPtsVie(1);
         avatar2.setPtsVie(10);
         avatar3.setPtsVie(5);
         avatar1.setPseudo("george");
@@ -55,12 +55,12 @@ public class test_Avatar {
         avatar1.defier(avatar2, lq1);
         avatar1.defier(avatar2, lq1);
         avatar1.defier(avatar2, lq1);
-        
-
-
 
         // On lance une question a faire
         avatar2.erreur_faire_question();
+
+        avatar1.setPtsVie(0);
+        avatar1.defier(avatar2, lq1);
 
 
     }

@@ -230,9 +230,14 @@ public class Avatar {
             }
     
     public void defier(Avatar avatar2,ListeQuestion listequestion1) {
-        Defi defi1 = new Defi(this,avatar2);
-        Question question = defi1.choix_question(listequestion1);
-        defi1.envoie_question(question);
+        if(pts_vie == 0){
+            System.out.println("Vous n'avez plus de pv vous ne pouvez plus defier veuillez augmentez vos pv en repondant a des test ou a des defis ou en rajoutant des notes dans votres bulletins");
+        }
+        else{
+            Defi defi1 = new Defi(this,avatar2);
+            Question question = defi1.choix_question(listequestion1);
+            defi1.envoie_question(question);
+        }
     }
 
     // public void test() {
