@@ -90,5 +90,13 @@ public class test_Admin {
 
         // Affichage de la liste d'avatar
         System.out.println(admin.getList_avatar());
+
+
+        // Modification du pseudo de l'avatar
+        admin.modif_pseudo_avatar(avatar1);
+
+
+        // Affichage de l'avatar
+        System.out.println(avatar1.toString());
     }
 }

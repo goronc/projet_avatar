@@ -44,8 +44,8 @@ public class Admin {
     }
 
     public void del_avatar(Avatar avatar) {
-        avatar = null;
         List_avatar.remove(avatar);
+        avatar = null;
     }
 
     public void ajout_question(Question question, ListeQuestion List_question) {
