@@ -35,12 +35,16 @@ public class Defi {
 
         Random rand = new Random();
         int indice = rand.nextInt(liste_question.size());
+        while(Avatar2.getQuestionAttente().contains(liste_question.getListeQuestions(indice))){
+            indice = rand.nextInt(liste_question.size());
+        }
         Question res_question = liste_question.getListeQuestions(indice);
         return res_question;
 
     }
 
-    public void envoie_question(Question question,Avatar avatar){
-        avatar.recevoir_question(question,avatar);
+    public void envoie_question(Question question){
+        Avatar2.recevoir_question(question,Avatar1);
+        System.out.println("la question a bien été envoyé");
     }
 }

@@ -33,7 +33,11 @@ public class test_Avatar {
 
 
         avatar2.setPtsVie(10);
-        avatar3.setPtsVie(10);
+        avatar3.setPtsVie(5);
+        avatar1.setPseudo("george");
+        avatar1.setPseudo("paul");
+        avatar1.setPseudo("jack");
+
         System.out.println(avatar2.getPtsVie());
         System.out.println(avatar3.getPtsVie());
 
@@ -41,60 +45,24 @@ public class test_Avatar {
         // Affichage de l'avatar
         System.out.println(avatar1.toString());
 
+        // Création de la liste de question
+        ListeQuestion lq1 = new ListeQuestion();
 
-        // Ajout de question dans la liste d'attente
-        avatar1.ajout_question(q1,avatar2);
+        lq1.AddQuestion(q1);
+        lq1.AddQuestion(q2);
+        lq1.AddQuestion(q3);
 
+        avatar1.defier(avatar2, lq1);
+        avatar1.defier(avatar2, lq1);
+        avatar1.defier(avatar2, lq1);
+        
 
-        // Affichage des questions en attente et des dates associées
-        System.out.println(avatar1.getQuestionAttente().toString());
-        System.out.println(avatar1.getDateAssocier().toString());
-
-        // Ajout de question dans la liste d'attente
-        avatar1.ajout_question(q2,avatar3);
-
-
-        // Affichage des questions en attente et des dates associées
-        System.out.println(avatar1.getQuestionAttente().toString());
-        System.out.println(avatar1.getDateAssocier().toString());
-        System.out.println(avatar1.getAdversaire().toString());
-
-
-        // Ajout des question dans la liste d'attente
-        avatar1.ajout_question(q3,avatar3);
-
-
-        // Affichage des questions en attente et des dates associées
-        System.out.println(avatar1.getQuestionAttente().toString());
-        System.out.println(avatar1.getDateAssocier().toString());
-        System.out.println(avatar1.getAdversaire().toString());
-
-
-        // Suppression d'une question
-        avatar1.supr_question(q3);
-
-
-        // Affichage des question en attente et des dates associées
-        System.out.println(avatar1.getQuestionAttente().toString());
-        System.out.println(avatar1.getDateAssocier().toString());
-        System.out.println(avatar1.getAdversaire().toString());
 
 
         // On lance une question a faire
-        avatar1.erreur_faire_question();
+        avatar2.erreur_faire_question();
 
 
-        //Affichage des points de vie de l'avatar
-        System.out.println(avatar1.getPtsVie());
-
-
-        // Affichage des question en attente et des dates associées
-        System.out.println(avatar1.getQuestionAttente().toString());
-        System.out.println(avatar1.getDateAssocier().toString());
-        System.out.println(avatar1.getAdversaire().toString());
-
-        System.out.println(avatar2.getPtsVie());
-        System.out.println(avatar3.getPtsVie());
     }
 }
 

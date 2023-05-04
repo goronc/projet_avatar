@@ -51,8 +51,8 @@ public class Avatar {
         return date_associer;
     }
 
-    public ArrayList<LocalDateTime> getAdversaire() {
-        return date_associer;
+    public ArrayList<Avatar> getAdversaire() {
+        return adversaire;
     }
 
 
@@ -100,7 +100,6 @@ public class Avatar {
         adversaire = new_adversaire;
     }
 
-
     public void Ajouter_Note(int newNote, Matiere matiere, int coef) {
         note.ajout_note(newNote, matiere, coef);
 
@@ -121,6 +120,7 @@ public class Avatar {
 
     public void augmenter_pv(int nb_pv) {
         pts_vie = pts_vie + nb_pv;
+        System.out.println("voici vos nouveaux points de vies : " + pts_vie);
     }
 
     public void diminuer_pv(int nb_pv) {
@@ -129,7 +129,9 @@ public class Avatar {
             pts_vie = 0;
         }
         else{
+            
             pts_vie = pts_vie - nb_pv;
+            System.out.println("il vous reste " + pts_vie + " points de vie");
         }
     }
 
@@ -192,7 +194,7 @@ public class Avatar {
                 str2 += Integer.toString(i);
         }
 
-        if(!str2.contains(user_choice)){
+        if(!str2.contains(user_reponse)){
             throw new MauvaisIndice();
         }
 
@@ -227,14 +229,11 @@ public class Avatar {
                 
             }
     
-        
-
-
-
-
-    // public void defier() {
-    //     this.startDefi();
-    // }
+    public void defier(Avatar avatar2,ListeQuestion listequestion1) {
+        Defi defi1 = new Defi(this,avatar2);
+        Question question = defi1.choix_question(listequestion1);
+        defi1.envoie_question(question);
+    }
 
     // public void test() {
     //     this.startTest();
