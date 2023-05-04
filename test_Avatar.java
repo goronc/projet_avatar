@@ -57,7 +57,10 @@ public class test_Avatar {
         avatar1.defier(avatar2, lq1);
 
         // On lance une question a faire
-        avatar2.erreur_faire_question();
+        // avatar2.erreur_faire_question();
+
+        Matiere math = new Matiere("math", 2);
+        avatar1.Ajouter_Note(15, math, 2);
 
         avatar1.setPtsVie(0);
         avatar1.defier(avatar2, lq1);

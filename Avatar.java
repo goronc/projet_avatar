@@ -101,7 +101,13 @@ public class Avatar {
     }
 
     public void Ajouter_Note(int newNote, Matiere matiere, int coef) {
+
         note.ajout_note(newNote, matiere, coef);
+        System.out.println("La note a bien été ajoutée");
+        if(newNote > 10 ){
+            int nbpv = ((newNote - 10) * coef) * matiere.getCoef();
+            this.augmenter_pv(nbpv);
+        }
 
     }
 

@@ -24,7 +24,7 @@ public class Bulletin {
             } 
             else {
                 ArrayList<Integer> liste_note;
-                liste_note = new ArrayList<Integer>(10);
+                liste_note = new ArrayList<Integer>(100);
                 liste_note.add(note);
                 bulletin.put(matiere,liste_note);
             }
