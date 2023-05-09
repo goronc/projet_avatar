@@ -1,7 +1,8 @@
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.io.*;
 
-public class Bulletin {
+public class Bulletin implements Serializable {
 
     private HashMap<Matiere, ArrayList<Integer>> bulletin;
 

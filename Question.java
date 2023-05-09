@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.io.*;
 
-public class Question{
+public class Question implements Serializable{
 
     private String intitule;
     private ArrayList<String> reponse_possible;

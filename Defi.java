@@ -1,6 +1,7 @@
 import java.util.Random;
+import java.io.*;
 
-public class Defi {
+public class Defi implements Serializable {
 
     private Avatar Avatar1;
     private Avatar Avatar2;

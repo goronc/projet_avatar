@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.io.*;
 
-public class ListeQuestion {
+public class ListeQuestion implements Serializable {
     
     private ArrayList<Question> List_question;
 

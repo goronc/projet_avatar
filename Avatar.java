@@ -1,7 +1,8 @@
 import java.util.*;
 import java.time.LocalDateTime;
+import java.io.*;
 
-public class Avatar {
+public class Avatar implements Serializable{
     
     private int pts_vie;
     private String pseudo;
@@ -10,6 +11,7 @@ public class Avatar {
     private ArrayList<Question> question_attente;
     private ArrayList<LocalDateTime> date_associer;
     private ArrayList<Avatar> adversaire;
+    private String mdp;
 
     class MauvaisIndice extends Exception{
         public String toString(){
@@ -18,14 +20,16 @@ public class Avatar {
     }
 
     public Avatar() {
-        pts_vie = 0;
+        pts_vie = 1;
         pseudo = "Inconnue";
         note = new Bulletin();
-        level = 0;
+        level = 1;
         question_attente = new ArrayList<Question>(10);
         date_associer = new ArrayList<LocalDateTime>(10);
         adversaire = new ArrayList<Avatar>(10);
+        mdp = "admin";
     }
+
     
 
     public Avatar(int newPts_vie, String newPseudo, Bulletin newNote, int newLevel , ArrayList<Question> new_question_attente,ArrayList<LocalDateTime> new_date_associer,ArrayList<Avatar> new_adversaire) {
@@ -41,6 +45,10 @@ public class Avatar {
 
     public int getPtsVie() {
         return pts_vie;
+    }
+
+    public String getmdp() {
+        return mdp;
     }
 
     public ArrayList<Question> getQuestionAttente() {
@@ -86,6 +94,10 @@ public class Avatar {
 
     public void setLevel(int newLevel) {
         level = newLevel;
+    }
+
+    public void setmdp(String new_mdp) {
+        mdp = new_mdp;
     }
 
     public void setQuestionAttente(ArrayList<Question> new_question_attente) {
@@ -258,6 +270,7 @@ public class Avatar {
                 ", notes = " + note.toString() +
                 ", question_attente = " + question_attente.toString() +
                 ", date_associer = " + date_associer.toString() +
+                ", adversaire = " + adversaire.toString() + 
                 '}';
     }
     

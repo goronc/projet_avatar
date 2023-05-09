@@ -1,6 +1,7 @@
 import java.util.Random;
+import java.io.*;
 
-public class Test {
+public class Test implements Serializable {
     
     private Avatar avatar1;
     
