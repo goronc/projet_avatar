@@ -402,6 +402,7 @@ public class Avatar implements Serializable{
                 ", test_attente = " + test_attente.toString() +
                 ", date_associer = " + date_associer.toString() +
                 ", adversaire = " + adversaire.toString() + 
+                ", mdp = " + mdp + 
                 '}';
     }
     
