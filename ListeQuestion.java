@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 import java.io.*;
 
 public class ListeQuestion implements Serializable {
@@ -32,6 +33,18 @@ public class ListeQuestion implements Serializable {
         else {
             List_question.add(question);
             System.out.println("La question a bien été ajouté");
+        }
+    }
+
+    public void AddQuestion_test(ListeQuestion liste) {
+        Random rand = new Random();
+        int indice = rand.nextInt(liste.size());
+        for (int i = 0; i < 3; i++) {
+            while(List_question.contains(liste.getListeQuestions(indice))) {
+                indice = rand.nextInt(liste.size());
+            }
+            Question question = liste.getListeQuestions(indice);
+            List_question.add(question);
         }
     }
 

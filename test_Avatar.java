@@ -64,6 +64,20 @@ public class test_Avatar {
 
         avatar1.setPtsVie(0);
 
+        Test test1 = avatar1.creer_test(lq1);
+        Test test2 = avatar1.creer_test(lq1);
+        Test test3 = avatar1.creer_test(lq1);
+
+        avatar1.recevoir_test(test1);
+        avatar1.recevoir_test(test2);
+        avatar1.recevoir_test(test3);
+
+        System.out.println(avatar1.getTestAttente());
+
+        avatar1.erreur_faire_test();
+
+        System.out.println(avatar1.getTestAttente());
+
 
 
     }

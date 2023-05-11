@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class Admin {
+public class Admin implements Serializable{
     
     private int id_admin;
     private ArrayList<Avatar> List_avatar;

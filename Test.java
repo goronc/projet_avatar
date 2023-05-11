@@ -1,30 +1,35 @@
-import java.util.Random;
 import java.io.*;
 
 public class Test implements Serializable {
     
     private Avatar avatar1;
+    private ListeQuestion questions;
     
-    public Test(Avatar new_avatar1) {
-        this.avatar1 = new_avatar1;
+    public Test(Avatar newAvatar, ListeQuestion newQuestions) {
+        this.avatar1 = newAvatar;
+        this.questions = newQuestions;
     }
     
     public Avatar getAvatar1() {
         return avatar1;
+    }
+
+    public ListeQuestion getQuestions() {
+        return questions;
     }
     
     public void setAvatar1(Avatar new_avatar1) {
         this.avatar1 = new_avatar1;
     }
 
-    public Question choix_Question(ListeQuestion liste) {
-        Random rand = new Random();
-        int indice = rand.nextInt(liste.size());
-        return liste.getListeQuestions(indice);
+    public void setQuestions(ListeQuestion newQuestions) {
+        this.questions = newQuestions;
     }
 
-    public void startTest() {
-        
+    public String toString() {
+        return "Test = {" +
+                questions.toString() +
+                '}';
     }
 }
 
