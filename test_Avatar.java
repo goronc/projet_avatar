@@ -74,6 +74,10 @@ public class test_Avatar {
 
         System.out.println(avatar1.getTestAttente());
 
+        avatar1.supr_test(test3);
+
+        System.out.println(avatar1.getTestAttente());
+
         avatar1.erreur_faire_test();
 
         System.out.println(avatar1.getTestAttente());
