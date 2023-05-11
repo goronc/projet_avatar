@@ -34,7 +34,7 @@ public class Avatar implements Serializable{
 
     
 
-    public Avatar(int newPts_vie, String newPseudo, Bulletin newNote, int newLevel , ArrayList<Question> new_question_attente, ArrayList<Test> new_test_attente, ArrayList<LocalDateTime> new_date_associer,ArrayList<Avatar> new_adversaire) {
+    public Avatar(int newPts_vie, String newPseudo, Bulletin newNote, int newLevel , ArrayList<Question> new_question_attente, ArrayList<Test> new_test_attente, ArrayList<LocalDateTime> new_date_associer,ArrayList<Avatar> new_adversaire, String new_mdp) {
         pts_vie = newPts_vie;
         pseudo = newPseudo;
         note = newNote;
@@ -43,6 +43,7 @@ public class Avatar implements Serializable{
         test_attente = new_test_attente;
         date_associer = new_date_associer;
         adversaire = new_adversaire;
+        mdp = new_mdp;
     }
 
 
