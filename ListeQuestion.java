@@ -41,7 +41,7 @@ public class ListeQuestion implements Serializable {
     public void AddQuestion_test(ListeQuestion liste) {
         Random rand = new Random();
         int indice = rand.nextInt(liste.size());
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 5; i++) {
             while(List_question.contains(liste.getListeQuestions(indice))) {
                 indice = rand.nextInt(liste.size());
             }

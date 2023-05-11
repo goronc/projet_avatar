@@ -164,24 +164,24 @@ public class Avatar implements Serializable{
 
     public void augmenter_pv(int nb_pv) {
         pts_vie = pts_vie + nb_pv;
-        System.out.println("voici vos nouveaux points de vies : " + pts_vie);
+        System.out.println("Voici vos nouveaux points de vies : " + pts_vie);
     }
 
     public void diminuer_pv(int nb_pv) {
         if(pts_vie - nb_pv <= 0){
-            System.out.println("vous n'avez plus de Pv vous ne pouvez plus jouer");
+            System.out.println("Vous n'avez plus de Pv, vous ne pouvez plus jouer");
             pts_vie = 0;
         }
         else{
             
             pts_vie = pts_vie - nb_pv;
-            System.out.println("il vous reste " + pts_vie + " points de vie");
+            System.out.println("Il vous reste " + pts_vie + " points de vie");
         }
     }
 
     public void recevoir_question(Question question, Avatar avatar) {
         if (question_attente.contains(question)) {
-            System.out.println("La question est deja en attente");
+            System.out.println("La question est déjà en attente");
         } 
         else {
             ajout_question(question,avatar);
@@ -191,17 +191,22 @@ public class Avatar implements Serializable{
     public void recevoir_test(Test test) {
         if (test_attente.size() == 0) {
             ajout_test(test);
+            System.out.println("Le test a été ajouté");
         } 
         else if (test_attente.contains(test)) {
             System.out.println("Le test est déjà en attente");
         } 
         else {
             ajout_test(test);
+            System.out.println("Le test a été ajouté");
         }
     }
 
     public void faire_test() throws MauvaisIndice{
         Random rand = new Random();
+        int lvl = level;
+        int cpt = 0;
+        int cpt_pv = 0;
         Scanner scanner_reponse = new Scanner(System.in);
         int indice = rand.nextInt(test_attente.size());
         Test test = test_attente.get(indice);
@@ -209,7 +214,7 @@ public class Avatar implements Serializable{
             ListeQuestion liste = test.getQuestions();
             Question question = liste.getListeQuestions(j);
             System.out.println(question.getIntitule());
-            System.out.println("Voici les réponses disponible laquel choisissez vous ?");
+            System.out.println("Voici les réponses disponibles, laquelle choisissez-vous ?");
             int indice2 = 1;
             for (String element : question.getReponsePossible()) {
                 System.out.println(indice2 +" : " +element);
@@ -227,26 +232,50 @@ public class Avatar implements Serializable{
             }
             int reponse_utilisateur = Integer.parseInt(user_reponse)-1;
             if(reponse_utilisateur == question.getReponseCorrect()){
-                System.out.println("Cette reponse etait juste ;) vous gagnez " + question.getNbPts() + " points de vie ");
-                this.augmenter_pv(question.getNbPts());
+                System.out.println("Cette reponse était juste ;)");
+                cpt += 1;
+                cpt_pv += question.getNbPts();
+                level += question.getLevel();
             }
             else{
-                System.out.println("Cette reponse etait fausse :( vous perdez " + question.getNbPts() + " points de vie ");
-                System.out.println("la réponse etait " + question.getReponsePossible().get(question.getReponseCorrect()));
-                this.diminuer_pv(question.getNbPts());
+                System.out.println("Cette reponse était fausse :(");
+                System.out.println("La réponse était " + question.getReponsePossible().get(question.getReponseCorrect()));
+                cpt_pv -= question.getNbPts();
+                if (level - question.getLevel() >= 1) {
+                    level -= question.getLevel();
+                }
+                else {
+                    level = 1;
+                }
             }
+        }
+        if (cpt_pv >= 0) {
+            this.augmenter_pv(cpt_pv);
+        }
+        else {
+            this.diminuer_pv(Math.abs(cpt_pv));
+        }
+        System.out.println("Vous avez un taux de réussite à ce test de : " + cpt * 20 + "%");
+        if (level > lvl) {
+            System.out.println("Vous êtes monté niveau " + level + ". Bravo !");
+        }
+        else if (level == lvl){
+            System.out.println("Vous êtes toujours niveau " + level + ". Dommage !");
+        }
+        else {
+            System.out.println("Vous êtes descendu niveau " + level + ". Dommage !");
         }
         supr_test(test);
     }
 
     public void faire_question() throws MauvaisIndice{
-
+        int lvl = level;
         int indice = 0;
         for (LocalDateTime element : date_associer) {
             LocalDateTime now = LocalDateTime.now();
             if(now.isAfter(element.plusDays(2))){
                 Question question = question_attente.get(indice);
-                System.out.println("Vous avez été trop lent pour répondre a la question : " + question.getIntitule() +" vous avez donc perdu "+ question.getNbPts() +" point de vie");
+                System.out.println("Vous avez été trop lent pour répondre à la question : " + question.getIntitule() +" vous avez donc perdu "+ question.getNbPts() +" points de vie");
                 this.diminuer_pv(question.getNbPts());
                 adversaire.get(question_attente.indexOf(question)).augmenter_pv(question.getNbPts());
                 supr_question(question);
@@ -257,7 +286,7 @@ public class Avatar implements Serializable{
         
         Scanner scanner = new Scanner(System.in);
         Scanner scanner_reponse = new Scanner(System.in);
-        System.out.println("quel question choisissez vous ?");
+        System.out.println("Quel question choisissez-vous ?");
         indice = 1;
         for (Question element : question_attente) {
             System.out.println(indice + " : " + element.getIntitule());
@@ -276,7 +305,7 @@ public class Avatar implements Serializable{
 
         Question question = question_attente.get(Integer.parseInt(user_choice)-1);
         System.out.println(question.getIntitule());
-        System.out.println("Voici les réponses disponible laquel choisissez vous ?");
+        System.out.println("Voici les réponses disponibles, laquelle choisissez-vous ?");
         indice = 1;
         for (String element : question.getReponsePossible()) {
             System.out.println(indice +" : " +element);
@@ -295,18 +324,35 @@ public class Avatar implements Serializable{
 
         int reponse_utilisateur = Integer.parseInt(user_reponse)-1;
         if(reponse_utilisateur == question.getReponseCorrect()){
-            System.out.println("Cette reponse etait juste ;) vous gagnez " + question.getNbPts() + " points de vie ");
+            System.out.println("Cette reponse était juste ;) vous gagnez " + question.getNbPts() + " points de vie ");
             this.augmenter_pv(question.getNbPts());
             adversaire.get(question_attente.indexOf(question)).diminuer_pv(question.getNbPts());
             supr_question(question);
+            level += question.getLevel();
         }
         else{
-            System.out.println("Cette reponse etait fausse :( vous perdez " + question.getNbPts() + " points de vie ");
-            System.out.println("la réponse etait " + question.getReponsePossible().get(question.getReponseCorrect()));
+            System.out.println("Cette reponse était fausse :( vous perdez " + question.getNbPts() + " points de vie ");
+            System.out.println("la réponse était " + question.getReponsePossible().get(question.getReponseCorrect()));
             this.diminuer_pv(question.getNbPts());
             adversaire.get(question_attente.indexOf(question)).augmenter_pv(question.getNbPts());
             supr_question(question);
-        }       
+            if (level - question.getLevel() >= 1) {
+                level -= question.getLevel();
+            }
+            else {
+                level = 1;
+            }
+        }
+
+        if (level > lvl) {
+            System.out.println("Vous êtes monté niveau " + level + ". Bravo !");
+        }
+        else if (level == lvl){
+            System.out.println("Vous êtes toujours niveau " + level + ". Dommage !");
+        }
+        else {
+            System.out.println("Vous êtes descendu niveau " + level + ". Dommage !");
+        }
     }
 
     public void erreur_faire_question() {
@@ -337,7 +383,7 @@ public class Avatar implements Serializable{
     
     public void defier(Avatar avatar2,ListeQuestion listequestion1) {
         if(pts_vie == 0){
-            System.out.println("Vous n'avez plus de pv vous ne pouvez plus defier veuillez augmentez vos pv en repondant a des test ou a des defis ou en rajoutant des notes dans votres bulletins");
+            System.out.println("Vous n'avez plus de pv, vous ne pouvez plus defier. Veuillez augmenter vos pv en repondant a des tests, des defis ou en rajoutant des notes dans votre bulletin");
         }
         else{
             Defi defi1 = new Defi(this,avatar2);
@@ -356,7 +402,6 @@ public class Avatar implements Serializable{
                 ", test_attente = " + test_attente.toString() +
                 ", date_associer = " + date_associer.toString() +
                 ", adversaire = " + adversaire.toString() + 
-                ", mdp = " + mdp + 
                 '}';
     }
     

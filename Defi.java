@@ -46,6 +46,6 @@ public class Defi implements Serializable {
 
     public void envoie_question(Question question){
         Avatar2.recevoir_question(question,Avatar1);
-        System.out.println("la question a bien été envoyé");
+        System.out.println("La question a bien été envoyé");
     }
 }

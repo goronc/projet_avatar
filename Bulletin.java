@@ -58,7 +58,7 @@ public class Bulletin implements Serializable {
             
         }
         else{
-            System.out.println("La note n'existe pas coef trop eleve");
+            System.out.println("La note n'existe pas ou le coeff trop élevé");
         }
     }
 
@@ -75,7 +75,7 @@ public class Bulletin implements Serializable {
             this.ajout_note(new_note, matiere, coef);
         }
         else{
-            System.out.println("La note n'existe pas coef trop eleve");
+            System.out.println("La note n'existe pas ou le coeff trop élevé");
         }
     }
 

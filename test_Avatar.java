@@ -60,7 +60,7 @@ public class test_Avatar {
         avatar2.erreur_faire_question();
 
         Matiere math = new Matiere("math", 2);
-        avatar1.Ajouter_Note(15, math, 2);
+        avatar2.Ajouter_Note(15, math, 2);
 
         avatar1.setPtsVie(0);
 
@@ -72,15 +72,9 @@ public class test_Avatar {
         avatar1.recevoir_test(test2);
         avatar1.recevoir_test(test3);
 
-        System.out.println(avatar1.getTestAttente());
-
         avatar1.supr_test(test3);
 
-        System.out.println(avatar1.getTestAttente());
-
         avatar1.erreur_faire_test();
-
-        System.out.println(avatar1.getTestAttente());
 
 
 
