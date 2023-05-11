@@ -26,6 +26,8 @@ public class ListeQuestion implements Serializable {
         return this.List_question.size();
     }
 
+    
+
     public void AddQuestion(Question question) {
         if (List_question.contains(question)) {
             System.out.println("La question existe déjà");

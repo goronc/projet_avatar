@@ -13,19 +13,19 @@ public class Fichier2 {
         avatar4.setPseudo("lucas");
 
         
-        // Sérialisation de l'objet
-        // try {
-        //     FileOutputStream fileOut = new FileOutputStream("avatar.ser");
-        //     ObjectOutputStream out = new ObjectOutputStream(fileOut);
-        //     out.writeObject(avatar);
-        //     out.writeObject(avatar2);
-        //     out.writeObject(avatar3);
-        //     out.writeObject(avatar4);
-        //     out.close();
-        //     fileOut.close();
-        // } catch (IOException i) {
-        //     i.printStackTrace();
-        // }
+        //Sérialisation de l'objet
+        try {
+            FileOutputStream fileOut = new FileOutputStream("avatar.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(avatar);
+            out.writeObject(avatar2);
+            out.writeObject(avatar3);
+            out.writeObject(avatar4);
+            out.close();
+            fileOut.close();
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
 
         ArrayList<Avatar> avatars = new ArrayList<>();
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("avatar.ser"))) {
