@@ -2,35 +2,44 @@ import java.io.*;
 
 public class Matiere implements Serializable {
 
+
     private String nom;
     private int coef;
+
 
     public Matiere(){
         nom = "Inconnue";
         coef = 0;
     }
 
+
     public Matiere(String new_nom,int new_coef){
         nom = new_nom;
         coef = new_coef;
     }
 
+
     public String getNom() {
         return nom;
     }
+
 
     public int getCoef() {
         return coef;
     }
 
+
     public void setNom(String new_nom) {
         nom = new_nom;
     }
+
 
     public void setCoef(int new_coef) {
         coef = new_coef;
     }
 
+    
+    // Affichage de la Matière
     public String toString() {
         return "Matiere = {" +
                 "nom = '" + nom + '\'' +

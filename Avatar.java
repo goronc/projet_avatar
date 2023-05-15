@@ -2,8 +2,10 @@ import java.util.*;
 import java.time.LocalDateTime;
 import java.io.*;
 
+
 public class Avatar implements Serializable{
     
+
     private int pts_vie;
     private String pseudo;
     private Bulletin note;
@@ -14,11 +16,14 @@ public class Avatar implements Serializable{
     private ArrayList<Avatar> adversaire;
     private String mdp;
 
+
+    // Exception si l'indice n'existe pas
     class MauvaisIndice extends Exception{
         public String toString(){
             return "Erreur: Cette Option n'existe pas ";
         }
     }
+
 
     public Avatar() {
         pts_vie = 1;
@@ -33,7 +38,6 @@ public class Avatar implements Serializable{
     }
 
     
-
     public Avatar(int newPts_vie, String newPseudo, Bulletin newNote, int newLevel , ArrayList<Question> new_question_attente, ArrayList<Test> new_test_attente, ArrayList<LocalDateTime> new_date_associer,ArrayList<Avatar> new_adversaire, String new_mdp) {
         pts_vie = newPts_vie;
         pseudo = newPseudo;
@@ -51,21 +55,26 @@ public class Avatar implements Serializable{
         return pts_vie;
     }
 
+
     public String getmdp() {
         return mdp;
     }
+
 
     public ArrayList<Question> getQuestionAttente() {
         return question_attente;
     }
 
+
     public ArrayList<Test> getTestAttente() {
         return test_attente;
     }
 
+
     public ArrayList<LocalDateTime> getDateAssocier() {
         return date_associer;
     }
+
 
     public ArrayList<Avatar> getAdversaire() {
         return adversaire;
@@ -76,54 +85,68 @@ public class Avatar implements Serializable{
         question_attente = new_question_attente;
     }
 
+
     public String getPseudo() {
         return pseudo;
     }
+
 
     public Bulletin getNote() {
         return note;
     }
 
+
     public int getLevel() {
         return level;
     }
+
 
     public void setPtsVie(int newPts_Vie) {
         pts_vie = newPts_Vie;
     }
 
+
     public void setPseudo(String newPseudo) {
         pseudo = newPseudo;
     }
+
 
     public void setNote(Bulletin newNote) {
         note = newNote;
     }
 
+
     public void setLevel(int newLevel) {
         level = newLevel;
     }
+
 
     public void setmdp(String new_mdp) {
         mdp = new_mdp;
     }
 
+
     public void setQuestionAttente(ArrayList<Question> new_question_attente) {
         question_attente = new_question_attente;
     }
+
 
     public void setTestAttente(ArrayList<Test> new_test_attente) {
         test_attente = new_test_attente;
     }
 
+
     public void setDateAssocier(ArrayList<LocalDateTime> new_date_associer) {
         date_associer = new_date_associer;
     }
+
 
     public void setAdversaire(ArrayList<Avatar> new_adversaire) {
         adversaire = new_adversaire;
     }
 
+
+    // Ajoute une note, sa matière et son coeff
     public void Ajouter_Note(int newNote, Matiere matiere, int coef) {
 
         note.ajout_note(newNote, matiere, coef);
@@ -135,6 +158,8 @@ public class Avatar implements Serializable{
 
     }
 
+
+    // Supprime une question dans question_attente, sa date et l'adversaire qui envoie la question
     public void supr_question(Question question) {
         date_associer.remove(question_attente.indexOf(question));
         adversaire.remove(question_attente.indexOf(question));
@@ -142,20 +167,28 @@ public class Avatar implements Serializable{
         
     }
 
+
+    // Supprime un test
     public void supr_test(Test test) {
         test_attente.remove(test);
     }
 
+
+    // Ajoute une question dans question_attente avec sa date associée et l'adversaire qui envoie la question
     public void ajout_question(Question question,Avatar avatar) {
         question_attente.add(question);
         adversaire.add(avatar);
         date_associer.add(LocalDateTime.now());
     }
 
+
+    // Ajoute un test
     public void ajout_test(Test test) {
         test_attente.add(test);
     }
 
+
+    // Créer un test à partir de la liste de questions
     public Test creer_test(ListeQuestion liste) {
         ListeQuestion liste_test = new ListeQuestion();
         liste_test.AddQuestion_test(liste);
@@ -163,11 +196,15 @@ public class Avatar implements Serializable{
         return test;
     }
 
+
+    // Augmente les points de vies
     public void augmenter_pv(int nb_pv) {
         pts_vie = pts_vie + nb_pv;
         System.out.println("Voici vos nouveaux points de vies : " + pts_vie);
     }
 
+
+    // Diminue les points de vies
     public void diminuer_pv(int nb_pv) {
         if(pts_vie - nb_pv <= 0){
             System.out.println("Vous n'avez plus de Pv, vous ne pouvez plus jouer");
@@ -180,6 +217,8 @@ public class Avatar implements Serializable{
         }
     }
 
+
+    // Vérifie si la question est déjà dans question_attente, sinon l'ajoute
     public void recevoir_question(Question question, Avatar avatar) {
         if (question_attente.contains(question)) {
             System.out.println("La question est déjà en attente");
@@ -189,6 +228,8 @@ public class Avatar implements Serializable{
         }
     }
 
+
+    // Vérifie si le test est déjà en attente, sinon l'ajoute
     public void recevoir_test(Test test) {
         if (test_attente.size() == 0) {
             ajout_test(test);
@@ -203,6 +244,8 @@ public class Avatar implements Serializable{
         }
     }
 
+
+    // Permet de faire un test
     public void faire_test() throws MauvaisIndice{
         Random rand = new Random();
         int lvl = level;
@@ -269,6 +312,8 @@ public class Avatar implements Serializable{
         supr_test(test);
     }
 
+
+    // Permet de faire un défi
     public void faire_question() throws MauvaisIndice{
         int lvl = level;
         int indice = 0;
@@ -356,6 +401,8 @@ public class Avatar implements Serializable{
         }
     }
 
+
+    // Lance une question d'un défi en vérifiant les exceptions
     public void erreur_faire_question() {
         boolean valide = false;
         while(!valide){
@@ -369,6 +416,8 @@ public class Avatar implements Serializable{
         }
     }
 
+
+    // Lance un test en vérifiant les exceptions
     public void erreur_faire_test() {
         boolean valide = false;
         while(!valide){
@@ -382,9 +431,10 @@ public class Avatar implements Serializable{
         }   
     }
     
+    // Créer un défi puis l'envoie à un adversaire
     public void defier(Avatar avatar2,ListeQuestion listequestion1) {
         if(pts_vie == 0){
-            System.out.println("Vous n'avez plus de pv, vous ne pouvez plus defier. Veuillez augmenter vos pv en repondant a des tests, des defis ou en rajoutant des notes dans votre bulletin");
+            System.out.println("Vous n'avez plus de pv, vous ne pouvez plus defier. Veuillez augmenter vos pv en repondant à des tests, des défis ou en rajoutant des notes dans votre bulletin");
         }
         else{
             Defi defi1 = new Defi(this,avatar2);
@@ -393,6 +443,8 @@ public class Avatar implements Serializable{
         }
     }
 
+
+    // Affichage de l'avatar
     public String toString() {
         return "Avatar = {" +
                 "pseudo = '" + pseudo + '\'' +
@@ -406,5 +458,4 @@ public class Avatar implements Serializable{
                 ", mdp = " + mdp + 
                 '}';
     }
-    
 }

@@ -2,7 +2,9 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import java.io.*;
 
+
 public class Bulletin implements Serializable {
+
 
     private HashMap<Matiere, ArrayList<Integer>> bulletin;
 
@@ -17,6 +19,17 @@ public class Bulletin implements Serializable {
     }
 
 
+    public HashMap<Matiere, ArrayList<Integer>> getBulletin() {
+        return bulletin;
+    }
+
+
+    public void setBulletin(HashMap<Matiere, ArrayList<Integer>> bulletin) {
+        this.bulletin = bulletin;
+    }
+
+
+    // Ajoute une note, sa matière et son coeff
     public void ajout_note(int note,Matiere matiere,int coef){
 
         for(int i =0;i<coef;i++){
@@ -30,11 +43,10 @@ public class Bulletin implements Serializable {
                 bulletin.put(matiere,liste_note);
             }
         }
-        
-
     }
 
 
+    // Supprime une, ou plusieurs note suivant le coeff
     public void supr_note(int note,Matiere matiere,int coef){
         int cpt = 0;
         for(int i =0;i<bulletin.get(matiere).size();i++){
@@ -63,6 +75,7 @@ public class Bulletin implements Serializable {
     }
 
 
+    // Modifie une ou plusieurs note suivant le coeff
     public void modif_note(int note,Matiere matiere,int coef,int new_note){
         int cpt = 0;
         for(int i =0;i<bulletin.get(matiere).size();i++){
@@ -79,17 +92,8 @@ public class Bulletin implements Serializable {
         }
     }
 
-
-    public HashMap<Matiere, ArrayList<Integer>> getBulletin() {
-        return bulletin;
-    }
-
-
-    public void setBulletin(HashMap<Matiere, ArrayList<Integer>> bulletin) {
-        this.bulletin = bulletin;
-    }
-
-
+    
+    // Affichage du Bulletin
     public String toString() {
         StringBuilder res = new StringBuilder();
         res.append("Bulletin : {");

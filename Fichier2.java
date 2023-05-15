@@ -1,8 +1,11 @@
 import java.io.*;
 import java.util.*;
 
+
 public class Fichier2 {
     public static void main(String[] args) {
+
+
         // Création d'un objet
         Avatar avatar = new Avatar();
         Avatar avatar2 = new Avatar();
@@ -12,7 +15,6 @@ public class Fichier2 {
         avatar3.setPseudo("palpatine");
         avatar4.setPseudo("lucas");
 
-        
         //Sérialisation de l'objet
         try {
             FileOutputStream fileOut = new FileOutputStream("avatar.ser");
@@ -43,7 +45,5 @@ public class Fichier2 {
             e.printStackTrace();
         }
         System.out.println(avatars);
-        
     }
 }
-
