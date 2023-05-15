@@ -2,7 +2,7 @@ import java.util.*;
 import java.time.LocalDateTime;
 import java.io.*;
 
-// alo
+
 public class Avatar implements Serializable{
     
 
