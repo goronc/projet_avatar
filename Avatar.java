@@ -228,6 +228,11 @@ public class Avatar implements Serializable{
         }
     }
 
+    // Modifie une note dans le bulletin
+    public void modifer_note(int note,Matiere matiere,int coef,int new_note){
+        this.note.modif_note(note, matiere, coef, new_note);
+    }
+
 
     // Vérifie si le test est déjà en attente, sinon l'ajoute
     public void recevoir_test(Test test) {
