@@ -81,8 +81,8 @@ public class Avatar implements Serializable{
     }
 
 
-    public void setBulletin(ArrayList<Question> new_question_attente) {
-        question_attente = new_question_attente;
+    public void setBulletin(Bulletin new_bulletin) {
+        note = new_bulletin;
     }
 
 
