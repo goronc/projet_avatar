@@ -44,7 +44,8 @@ public class main {
         int indice = 0;
 
         boolean running = true;
-        while(true){
+        boolean running2 = true;
+        while(running){
             do {
                 System.out.print("Entrez votre pseudo : ");
                 user_pseudo = scanner_pseudo.nextLine();
@@ -75,7 +76,7 @@ public class main {
                     break;
                 }
             }
-            while(running){
+            while(running2){
                 Avatar avatar = avatars.get(indice);
                 Scanner scanner_choice = new Scanner(System.in);
                 System.out.println("Que voulez vous faire : ");
@@ -277,10 +278,21 @@ public class main {
                 } catch (InterruptedException e) {
                     // Ignorer l'exception
                 }
-            
 
+                try {
+                    FileOutputStream fileOut = new FileOutputStream("avatar.ser");
+                    ObjectOutputStream out = new ObjectOutputStream(fileOut);
+                    for(int i = 0 ; i<avatars.size();i++){
+                        out.writeObject(avatars.get(i));
+                    }
+                    out.close();
+                    fileOut.close();
+                } catch (IOException i) {
+                    i.printStackTrace();
+                }
+                System.out.println(avatars);
+            }
         }
     }
-}
 }
 
