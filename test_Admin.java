@@ -93,7 +93,7 @@ public class test_Admin {
 
 
         // Modification du pseudo de l'avatar
-        admin.modif_pseudo_avatar(avatar1);
+        admin.modif_avatar();
 
 
         // Affichage de l'avatar

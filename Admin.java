@@ -7,11 +7,12 @@ public class Admin implements Serializable{
 
     private int id_admin;
     private ArrayList<Avatar> List_avatar;
-    
+    private ArrayList<Ticket> List_tickets; 
 
     public Admin(int id_admin) {
         this.id_admin = id_admin;
         this.List_avatar = new ArrayList<Avatar>();
+        this.List_tickets = new ArrayList<Ticket>();
     }
     
 
@@ -25,6 +26,11 @@ public class Admin implements Serializable{
     }
 
 
+    public ArrayList<Ticket> getTickets_pseudo() {
+        return List_tickets;
+    }
+
+
     public void setId_admin(int newId_admin) {
         this.id_admin = newId_admin;
     }
@@ -32,6 +38,11 @@ public class Admin implements Serializable{
 
     public void setList_avatar(ArrayList<Avatar> new_list_avatar) {
         this.List_avatar = new_list_avatar;
+    }
+
+
+    public void setTickets_pseudo(ArrayList<Ticket> new_List_tickets) {
+        this.List_tickets = new_List_tickets;
     }
 
 
@@ -47,14 +58,51 @@ public class Admin implements Serializable{
     }
 
 
-    // Modifie le pseudo le l'avatar
-    public void modif_pseudo_avatar(Avatar avatar) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Nouveau Pseudo: ");
-        String newPseudo = sc.nextLine();
-        avatar.setPseudo(newPseudo);
+    // Ajoute un ticket fait par un avatar
+    public void ajout_ticket(Ticket ticket) {
+        List_tickets.add(ticket);
     }
 
+
+    // Supprime un ticket
+    public void suppr_ticket(Ticket ticket) {
+        if (List_tickets.contains(ticket)) {
+            List_tickets.remove(ticket);
+            System.out.println("Le ticket a été supprimé");
+        }
+        else {
+            System.out.println("Le ticket n'existe pas");
+        }
+    }
+
+    // Vérifie si le ticket existe, sinon l'ajouter
+    public void recevoir_ticket(Ticket ticket) {
+        if (List_tickets.contains(ticket)) {
+            System.out.println("Ce ticket a déjà été créer");
+        }
+        else {
+            ajout_ticket(ticket);                                                                                                                                             
+            System.out.println("Le ticket a bien été envoyé");
+        }
+    }
+
+
+    // Modifie l'avatar selon les tickets
+    public void modif_avatar() {
+        Ticket ticket = List_tickets.get(0);
+        Avatar avatar = ticket.getAvatar();
+        if (ticket.getIntitule() == "pseudo") {
+            del_avatar(avatar);
+            avatar.setPseudo(ticket.getMot());
+            addAvatar_toList_avatar(avatar);
+        }
+        else if (ticket.getIntitule() == "mdp"){
+            del_avatar(avatar);
+            avatar.setmdp(ticket.getMot());
+            addAvatar_toList_avatar(avatar);
+        }
+        List_tickets.remove(ticket);
+    }
 
     // Supprime l'avatar
     public void del_avatar(Avatar avatar) {

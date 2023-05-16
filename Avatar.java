@@ -449,6 +449,26 @@ public class Avatar implements Serializable{
     }
 
 
+    // Envoie un ticket pour le changement de pseudo à l'admin
+    public void ticket_pseudo(Admin admin) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Entrez votre nouveau pseudo: ");
+        String new_pseudo = scanner.nextLine();
+        Ticket ticket = new Ticket(admin, this, "pseudo", new_pseudo);
+        admin.recevoir_ticket(ticket);
+    }
+
+
+    // Envoie un ticket pour le changement de mot de passe à l'admin
+    public void ticket_mdp(Admin admin) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Entrez votre nouveau mot de passe: ");
+        String new_pseudo = scanner.nextLine();
+        Ticket ticket = new Ticket(admin, this, "mdp", new_pseudo);
+        admin.recevoir_ticket(ticket);
+    }
+
+
     // Affichage de l'avatar
     public String toString() {
         return "Avatar = {" +

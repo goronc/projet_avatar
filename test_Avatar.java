@@ -75,10 +75,5 @@ public class test_Avatar {
         avatar1.supr_test(test3);
 
         avatar1.erreur_faire_test();
-
-
-
     }
 }
-
-
