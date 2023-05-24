@@ -271,7 +271,7 @@ public class main {
                     System.out.println(avatar.getNote());
                 }
                 else if(user_choice.equals("q")){
-                    running = false;
+                    running2 = false;
                 }
                 try {
                     Thread.sleep(2000);
@@ -290,7 +290,6 @@ public class main {
                 } catch (IOException i) {
                     i.printStackTrace();
                 }
-                System.out.println(avatars);
             }
         }
     }
