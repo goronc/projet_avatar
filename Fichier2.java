@@ -68,6 +68,37 @@ public class Fichier2 {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
+         //Sérialisation de l'objet
+         try {
+            FileOutputStream fileOut = new FileOutputStream("question.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(q1);
+            out.writeObject(q2);
+            out.close();
+            fileOut.close();
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+
+        ArrayList<Question> questions = new ArrayList<>();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("question.ser"))) {
+            while (true) {
+                try {
+                    Object obj = ois.readObject();
+                    if (obj instanceof Question) {
+                        questions.add((Question) obj);
+                    }
+                } catch (EOFException e) {
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
         System.out.println(avatars);
+        System.out.println(questions);
     }
 }
