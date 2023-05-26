@@ -92,7 +92,16 @@ public class test_Admin {
         System.out.println(admin.getList_avatar());
 
 
-        // Modification du pseudo de l'avatar
+        // Demande de changement de pseudo
+        avatar1.ticket_pseudo(admin);
+
+
+        // Demande de changement de mot de passe
+        avatar1.ticket_mdp(admin);
+
+
+        // Modification du pseudo et du mot de passe de l'avatar
+        admin.modif_avatar();
         admin.modif_avatar();
 
 
