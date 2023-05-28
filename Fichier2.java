@@ -1,8 +1,15 @@
 import java.io.*;
 import java.util.*;
 
-
+/**
+ * La classe Fichier2 contient le point d'entrée du programme.
+ */
 public class Fichier2 {
+    /**
+     * Le point d'entrée du programme.
+     *
+     * @param args les arguments de ligne de commande
+     */
     public static void main(String[] args) {
 
 
