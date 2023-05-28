@@ -386,6 +386,28 @@ public class Fichier2 {
         Question q50 = new Question("Quelle est la planète la plus proche du soleil ?", reponses50, 1, 8, 4);
 
 
+        ArrayList<String> reponse_possible3 = new ArrayList<String>(4);
+        reponse_possible3.add("Paris");
+        reponse_possible3.add("Londres");
+        reponse_possible3.add("Madrid");
+        reponse_possible3.add("Berlin");
+        Question question1 = new Question("Quel est le nom de la capitale de la France ?", reponse_possible3, 1, 1, 1);
+
+
+        ArrayList<String> reponse_possible4 = new ArrayList<String>(4);
+        reponse_possible4.add("L'océan Atlantique");
+        reponse_possible4.add("L'océan Pacifique");
+        reponse_possible4.add("L'océan Indien");
+        reponse_possible4.add("L'océan Arctique");
+        Question question2 = new Question("Quel est le plus grand océan ?", reponse_possible4, 2, 2, 1);
+        
+
+        ArrayList<String> reponse_possible5 = new ArrayList<String>(3);
+        reponse_possible5.add("6 millions");
+        reponse_possible5.add("8 millions");
+        reponse_possible5.add("7 millions");
+        Question question3 = new Question("Quel est la population modiale ?", reponse_possible5, 2, 6, 1);
+
         Bulletin bulletin = new Bulletin();
 
         Matiere math = new Matiere("Math", 2);
@@ -493,6 +515,9 @@ public class Fichier2 {
             out.writeObject(q48);
             out.writeObject(q49);
             out.writeObject(q50);
+            out.writeObject(question1);
+            out.writeObject(question2);
+            out.writeObject(question3);
             out.close();
             fileOut.close();
         } catch (IOException i) {
