@@ -52,7 +52,7 @@ public class main {
             while (true) {
                 try {
                     Object obj = ois.readObject();
-                    if (obj instanceof Ticket) {
+                    if (obj instanceof Question) {
                         tickets.add((Ticket) obj);
                     }
                 } catch (EOFException e) {
@@ -120,6 +120,7 @@ public class main {
                         System.out.println("1 - Voir la liste des Avatars");
                         System.out.println("2 - Voir la Liste des tickets ");
                         System.out.println("3 - Changez le pseudo d'un Avatars");
+                        System.out.println("4 - Ajoutez de nouvelle Question");
                         System.out.println("q - Ce deconnecter ");
                         System.out.println("Votre choix : ");
                         String admin_choix_possible = "1234q";
@@ -134,6 +135,7 @@ public class main {
                             System.out.println("1 - Voir la liste des Avatars");
                             System.out.println("2 - Voir la Liste des tickets ");
                             System.out.println("3 - Changez le pseudo d'un Avatars");
+                            System.out.println("4 - Ajoutez de nouvelle Question");
                             System.out.println("q - Ce deconnecter ");
                             System.out.println("Votre choix : ");
                             admin_choice = admin_scanner.nextLine();
@@ -145,7 +147,7 @@ public class main {
                             }
                         }
                         else if(admin_choice.equals("2")){
-                            for(int i = 0 ;i<tickets.size();i++){
+                            for(int i =0 ;i<avatars.size();i++){
                                 System.out.println((i+1) + "-" + tickets.get(i));
                             }
                         }
