@@ -459,6 +459,33 @@ public class Fichier2 {
             e.printStackTrace();
         }
 
+        //Sérialisation de l'objet
+        try {
+            FileOutputStream fileOut = new FileOutputStream("tickets.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject();
+            out.close();
+            fileOut.close();
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+
+        ArrayList<Ticket> ticket = new ArrayList<>();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("tickets.ser"))) {
+            while (true) {
+                try {
+                    Object obj = ois.readObject();
+                    if (obj instanceof Avatar) {
+                        ticket.add((Ticket) obj);
+                    }
+                } catch (EOFException e) {
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
          //Sérialisation de l'objet
          try {

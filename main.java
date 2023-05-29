@@ -46,6 +46,22 @@ public class main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        ArrayList<Ticket> tickets = new ArrayList<>();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("tickets.ser"))) {
+            while (true) {
+                try {
+                    Object obj = ois.readObject();
+                    if (obj instanceof Question) {
+                        tickets.add((Ticket) obj);
+                    }
+                } catch (EOFException e) {
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         
 
         ArrayList<String> liste_pseudo = new ArrayList<>();
@@ -96,48 +112,82 @@ public class main {
                         break;
                     }
                 }
-                while(running3){
-                    System.out.println("Bienvenue dans le Systeme D'administration que voulez vous faire?");
-                    Scanner admin_scanner = new Scanner(System.in);
-                    System.out.println("1 - Voir la liste des Avatars");
-                    System.out.println("2 - Voir la Liste des tickets ");
-                    System.out.println("3 - Changez le pseudo d'un Avatars");
-                    System.out.println("4 - Ajoutez de nouvelle Question");
-                    System.out.println("q - Ce deconnecter ");
-                    System.out.println("Votre choix : ");
-                    String admin_choix_possible = "1234q";
-                    String admin_choice = admin_scanner.nextLine();
-                    while(!admin_choix_possible.contains(String.valueOf(admin_choice))){
-                        System.out.println("Option non disponible");
-                        try {
-                            Thread.sleep(2000);
-                        } catch (InterruptedException e) {
-                            // Ignorer l'exception
-                        }
+                if(user_mdp.equals("admin")){
+                    Admin admin = new Admin(0,avatars,tickets);
+                    while(running3){
+                        System.out.println("Bienvenue dans le Systeme D'administration que voulez vous faire?");
+                        Scanner admin_scanner = new Scanner(System.in);
                         System.out.println("1 - Voir la liste des Avatars");
                         System.out.println("2 - Voir la Liste des tickets ");
                         System.out.println("3 - Changez le pseudo d'un Avatars");
                         System.out.println("4 - Ajoutez de nouvelle Question");
                         System.out.println("q - Ce deconnecter ");
                         System.out.println("Votre choix : ");
-                        admin_choice = admin_scanner.nextLine();
-                    }
-                    if(admin_choice.equals("1")){
-                        System.out.println("Voici la liste de tout les avatars");
-                        for(int i =0 ;i<avatars.size();i++){
-                            System.out.println((i+1) + "-" + avatars.get(i));
+                        String admin_choix_possible = "1234q";
+                        String admin_choice = admin_scanner.nextLine();
+                        while(!admin_choix_possible.contains(String.valueOf(admin_choice))){
+                            System.out.println("Option non disponible");
+                            try {
+                                Thread.sleep(2000);
+                            } catch (InterruptedException e) {
+                                // Ignorer l'exception
+                            }
+                            System.out.println("1 - Voir la liste des Avatars");
+                            System.out.println("2 - Voir la Liste des tickets ");
+                            System.out.println("3 - Changez le pseudo d'un Avatars");
+                            System.out.println("4 - Ajoutez de nouvelle Question");
+                            System.out.println("q - Ce deconnecter ");
+                            System.out.println("Votre choix : ");
+                            admin_choice = admin_scanner.nextLine();
+                        }
+                        if(admin_choice.equals("1")){
+                            System.out.println("Voici la liste de tout les avatars");
+                            for(int i =0 ;i<avatars.size();i++){
+                                System.out.println("- " + avatars.get(i).getPseudo());
+                            }
+                        }
+                        else if(admin_choice.equals("2")){
+                            for(int i =0 ;i<avatars.size();i++){
+                                System.out.println((i+1) + "-" + tickets.get(i));
+                            }
+                        }
+                        else if(admin_choice.equals("3")){
+                            String choix_possible = "";
+                            Scanner admin_scanner_avatar = new Scanner(System.in);
+                            String admin_choice_avatar = "0";
+                            int indice_pseudo = 0;
+                            while(!choix_possible.contains(String.valueOf(admin_choice_avatar))){
+                                System.out.println("Voici la liste de tout les avatars");
+                                for(int i =0 ;i<avatars.size();i++){
+                                    System.out.println((i+1) + " - " + avatars.get(i).getPseudo());
+                                    choix_possible = choix_possible + (i+1);
+                                }
+                                System.out.println("q pour quitter");
+                                choix_possible = choix_possible + ("q");
+                                System.out.println("Quels avatar choisissez vous?");
+                                admin_choice_avatar = admin_scanner_avatar.nextLine();
+                            }
+                            if(choix_possible.contains(admin_choice_avatar)){
+                                System.out.println("Quel est son nouveau Pseudo?");
+                                Scanner scanner_new_pseudo = new Scanner(System.in);
+                                String  new_pseudo = scanner_new_pseudo.nextLine();
+                                avatars.get(Integer.parseInt(admin_choice_avatar)-1).setPseudo(new_pseudo);
+                            }
+                            
+
+                        }
+                        else if(admin_choice.equals("q")){
+                            break;
+                        }
+                        try {
+    
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            // Ignorer l'exception
                         }
                     }
-                    else if(admin_choice.equals("2")){
-
-                    }
-                    try {
-                        
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        // Ignorer l'exception
-                    }
-                }
+                } 
+                
             }
             else{
                 System.out.println("entrez votre mot de passe : ");
@@ -391,6 +441,20 @@ public class main {
                             ObjectOutputStream out = new ObjectOutputStream(fileOut);
                             for(int i = 0 ; i<avatars.size();i++){
                                 out.writeObject(avatars.get(i));
+                            }
+                            out.close();
+                            fileOut.close();
+                            FileOutputStream fileOut2 = new FileOutputStream("question.ser");
+                            ObjectOutputStream out2 = new ObjectOutputStream(fileOut);
+                            for(int i = 0 ; i<questions.size();i++){
+                                out.writeObject(questions.get(i));
+                            }
+                            out.close();
+                            fileOut.close();
+                            FileOutputStream fileOut3 = new FileOutputStream("tickets.ser");
+                            ObjectOutputStream out3 = new ObjectOutputStream(fileOut);
+                            for(int i = 0 ; i<tickets.size();i++){
+                                out.writeObject(tickets.get(i));
                             }
                             out.close();
                             fileOut.close();
