@@ -79,7 +79,8 @@ public class main {
         boolean running = true;
         boolean running2 = true;
         boolean running3 = true;
-        
+        Admin admin = new Admin(0, avatars, tickets);
+
         while(running){
             do {
                 running2 = true;
@@ -113,7 +114,7 @@ public class main {
                     }
                 }
                 if(user_mdp.equals("admin")){
-                    Admin admin = new Admin(0,avatars,tickets);
+                    Admin admin2 = new Admin(0,avatars,tickets);
                     while(running3){
                         System.out.println("Bienvenue dans le Systeme D'administration que voulez vous faire?");
                         Scanner admin_scanner = new Scanner(System.in);
@@ -121,6 +122,7 @@ public class main {
                         System.out.println("2 - Voir la Liste des tickets ");
                         System.out.println("3 - Changez le pseudo d'un Avatars");
                         System.out.println("4 - Ajoutez de nouvelle Question");
+                        System.out.println("4 - Changez le mdp d'un Avatars");
                         System.out.println("q - Ce deconnecter ");
                         System.out.println("Votre choix : ");
                         String admin_choix_possible = "1234q";
@@ -135,7 +137,7 @@ public class main {
                             System.out.println("1 - Voir la liste des Avatars");
                             System.out.println("2 - Voir la Liste des tickets ");
                             System.out.println("3 - Changez le pseudo d'un Avatars");
-                            System.out.println("4 - Ajoutez de nouvelle Question");
+                            System.out.println("4 - Changez le mdp d'un Avatars");
                             System.out.println("q - Ce deconnecter ");
                             System.out.println("Votre choix : ");
                             admin_choice = admin_scanner.nextLine();
@@ -173,6 +175,29 @@ public class main {
                                 String  new_pseudo = scanner_new_pseudo.nextLine();
                                 avatars.get(Integer.parseInt(admin_choice_avatar)-1).setPseudo(new_pseudo);
                             }
+                        }
+                        else if(admin_choice.equals("4")){
+                            String choix_possible = "";
+                            Scanner admin_scanner_avatar = new Scanner(System.in);
+                            String admin_choice_avatar = "0";
+                            int indice_pseudo = 0;
+                            while(!choix_possible.contains(String.valueOf(admin_choice_avatar))){
+                                System.out.println("Voici la liste de tout les avatars");
+                                for(int i =0 ;i<avatars.size();i++){
+                                    System.out.println((i+1) + " - " + avatars.get(i).getPseudo());
+                                    choix_possible = choix_possible + (i+1);
+                                }
+                                System.out.println("q pour quitter");
+                                choix_possible = choix_possible + ("q");
+                                System.out.println("Quels avatar choisissez vous?");
+                                admin_choice_avatar = admin_scanner_avatar.nextLine();
+                            }
+                            if(choix_possible.contains(admin_choice_avatar)){
+                                System.out.println("Quel est son nouveau MDP?");
+                                Scanner scanner_new_mdp = new Scanner(System.in);
+                                String  new_mdp = scanner_new_mdp.nextLine();
+                                avatars.get(Integer.parseInt(admin_choice_avatar)-1).setmdp(new_mdp);
+                            }
                             
 
                         }
@@ -184,6 +209,31 @@ public class main {
                             Thread.sleep(2000);
                         } catch (InterruptedException e) {
                             // Ignorer l'exception
+                        }
+                        try {
+                            FileOutputStream fileOut = new FileOutputStream("avatar.ser");
+                            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+                            for(int i = 0 ; i<avatars.size();i++){
+                                out.writeObject(avatars.get(i));
+                            }
+                            out.close();
+                            fileOut.close();
+                            FileOutputStream fileOut2 = new FileOutputStream("question.ser");
+                            ObjectOutputStream out2 = new ObjectOutputStream(fileOut);
+                            for(int i = 0 ; i<questions.size();i++){
+                                out.writeObject(questions.get(i));
+                            }
+                            out2.close();
+                            fileOut2.close();
+                            FileOutputStream fileOut3 = new FileOutputStream("tickets.ser");
+                            ObjectOutputStream out3 = new ObjectOutputStream(fileOut);
+                            for(int i = 0 ; i<tickets.size();i++){
+                                out.writeObject(tickets.get(i));
+                            }
+                            out3.close();
+                            fileOut3.close();
+                        } catch (IOException i) {
+                            i.printStackTrace();
                         }
                     }
                 } 
@@ -214,9 +264,10 @@ public class main {
                         System.out.println("6 - Modifier des notes ");
                         System.out.println("7 - Voir tes notes ");
                         System.out.println("8 - Défier quelqu'un ");
+                        System.out.println("9 - Créer un ticket ");
                         System.out.println("q - Ce deconnecter ");
                         System.out.println("Votre choix : ");
-                        String choix_possible = "12345678q";
+                        String choix_possible = "123456789q";
                         String user_choice = scanner_choice.nextLine();
                         while(!choix_possible.contains(String.valueOf(user_choice))){
                             System.out.println("Option non disponible");
@@ -234,6 +285,7 @@ public class main {
                             System.out.println("6 - Modifier des notes ");
                             System.out.println("7 - Voir tes notes ");
                             System.out.println("8 - Défier quelqu'un ");
+                            System.out.println("9 - Créer un ticket ");
                             System.out.println("q - Ce deconnecter ");
                             System.out.println("Votre choix : ");
                             user_choice = scanner_choice.nextLine();
@@ -449,15 +501,15 @@ public class main {
                             for(int i = 0 ; i<questions.size();i++){
                                 out.writeObject(questions.get(i));
                             }
-                            out.close();
-                            fileOut.close();
+                            out2.close();
+                            fileOut2.close();
                             FileOutputStream fileOut3 = new FileOutputStream("tickets.ser");
                             ObjectOutputStream out3 = new ObjectOutputStream(fileOut);
                             for(int i = 0 ; i<tickets.size();i++){
                                 out.writeObject(tickets.get(i));
                             }
-                            out.close();
-                            fileOut.close();
+                            out3.close();
+                            fileOut3.close();
                         } catch (IOException i) {
                             i.printStackTrace();
                         }
