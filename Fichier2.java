@@ -428,6 +428,8 @@ public class Fichier2 {
         avatar4.setPseudo("lucas");
         avatar2.setBulletin(bulletin);
 
+        Admin admin = new Admin(1);
+        Ticket ticket = new Ticket(admin, avatar, "pseudo", "UnNouveauPseudo");
 
         //Sérialisation de l'objet
         try {
@@ -463,20 +465,20 @@ public class Fichier2 {
         try {
             FileOutputStream fileOut = new FileOutputStream("tickets.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject();
+            out.writeObject(ticket);
             out.close();
             fileOut.close();
         } catch (IOException i) {
             i.printStackTrace();
         }
 
-        ArrayList<Ticket> ticket = new ArrayList<>();
+        ArrayList<Ticket> tickets = new ArrayList<>();
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("tickets.ser"))) {
             while (true) {
                 try {
                     Object obj = ois.readObject();
-                    if (obj instanceof Avatar) {
-                        ticket.add((Ticket) obj);
+                    if (obj instanceof Ticket) {
+                        tickets.add((Ticket) obj);
                     }
                 } catch (EOFException e) {
                     break;
@@ -569,5 +571,6 @@ public class Fichier2 {
         
         System.out.println(avatars);
         System.out.println(questions);
+        System.out.println(tickets);
     }
 }

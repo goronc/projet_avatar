@@ -97,6 +97,7 @@ public class Ticket implements Serializable {
         return "Ticket = {" +
                 "Avatar = '" + avatar + '\'' +
                 ", Intitule = " + intitule +
+                ", Mot = " + mot +
                 '}';
     }
 }
