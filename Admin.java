@@ -16,10 +16,21 @@ public class Admin implements Serializable {
      *
      * @param id_admin l'identifiant de l'administrateur
      */
-    public Admin(int id_admin) {
-        this.id_admin = id_admin;
+    public Admin(int new_id_admin) {
+        this.id_admin = new_id_admin;
         this.List_avatar = new ArrayList<Avatar>();
         this.List_tickets = new ArrayList<Ticket>();
+    }
+
+    /**
+     * Constructeur de la classe Admin.
+     *
+     * @param id_admin l'identifiant de l'administrateur
+     */
+    public Admin(int new_id_admin, ArrayList<Avatar> new_List_avatar , ArrayList<Ticket> new_List_tickets) {
+        this.id_admin = new_id_admin;
+        this.List_avatar = new_List_avatar;
+        this.List_tickets = new_List_tickets;
     }
 
     /**

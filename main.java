@@ -105,8 +105,38 @@ public class main {
                     System.out.println("4 - Ajoutez de nouvelle Question");
                     System.out.println("q - Ce deconnecter ");
                     System.out.println("Votre choix : ");
-                    String choix_possible = "1234q";
+                    String admin_choix_possible = "1234q";
                     String admin_choice = admin_scanner.nextLine();
+                    while(!admin_choix_possible.contains(String.valueOf(admin_choice))){
+                        System.out.println("Option non disponible");
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            // Ignorer l'exception
+                        }
+                        System.out.println("1 - Voir la liste des Avatars");
+                        System.out.println("2 - Voir la Liste des tickets ");
+                        System.out.println("3 - Changez le pseudo d'un Avatars");
+                        System.out.println("4 - Ajoutez de nouvelle Question");
+                        System.out.println("q - Ce deconnecter ");
+                        System.out.println("Votre choix : ");
+                        admin_choice = admin_scanner.nextLine();
+                    }
+                    if(admin_choice.equals("1")){
+                        System.out.println("Voici la liste de tout les avatars");
+                        for(int i =0 ;i<avatars.size();i++){
+                            System.out.println((i+1) + "-" + avatars.get(i));
+                        }
+                    }
+                    else if(admin_choice.equals("2")){
+
+                    }
+                    try {
+                        
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        // Ignorer l'exception
+                    }
                 }
             }
             else{
