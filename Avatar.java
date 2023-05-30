@@ -329,9 +329,9 @@ public class Avatar implements Serializable {
      *
      * @param nb_pv Le nombre de points de vie à retirer.
      */
-    public void diminuer_pv(int nb_pv) {
+    public void diminuer_pv(int nb_pv, Avatar avatar) {
         if (pts_vie - nb_pv <= 0) {
-            System.out.println("Vous n'avez plus de PV, vous ne pouvez plus jouer");
+            System.out.println("Les points de vie de " + avatar.getPseudo() + " tombe à 0");
             pts_vie = 0;
         } else {
             pts_vie = pts_vie - nb_pv;
@@ -449,7 +449,7 @@ public class Avatar implements Serializable {
         if (cpt_pv >= 0) {
             this.augmenter_pv(cpt_pv);
         } else {
-            this.diminuer_pv(Math.abs(cpt_pv));
+            this.diminuer_pv(Math.abs(cpt_pv), this);
         }
 
         // Afficher le taux de réussite du test
@@ -485,7 +485,7 @@ public class Avatar implements Serializable {
             if (now.isAfter(element.plusDays(2))) {
                 Question question = question_attente.get(indice);
                 System.out.println("Vous avez été trop lent pour répondre à la question : " + question.getIntitule() + " vous avez donc perdu " + question.getNbPts() + " points de vie");
-                this.diminuer_pv(question.getNbPts());
+                this.diminuer_pv(question.getNbPts(), this);
                 adversaire.get(question_attente.indexOf(question)).augmenter_pv(question.getNbPts());
                 supr_question(question);
             }
@@ -537,13 +537,15 @@ public class Avatar implements Serializable {
         if (reponse_utilisateur == question.getReponseCorrect()) {
             System.out.println("Cette reponse était juste ;) vous gagnez " + question.getNbPts() + " points de vie ");
             this.augmenter_pv(question.getNbPts());
-            adversaire.get(question_attente.indexOf(question)).diminuer_pv(question.getNbPts());
+            System.out.println("L'adversaire :");
+            adversaire.get(question_attente.indexOf(question)).diminuer_pv(question.getNbPts(), adversaire.get(question_attente.indexOf(question)));
             supr_question(question);
             level += question.getLevel();
         } else {
             System.out.println("Cette reponse était fausse :( vous perdez " + question.getNbPts() + " points de vie ");
             System.out.println("la réponse était " + question.getReponsePossible().get(question.getReponseCorrect()));
-            this.diminuer_pv(question.getNbPts());
+            this.diminuer_pv(question.getNbPts(), this);
+            System.out.println("L'adversaire :");
             adversaire.get(question_attente.indexOf(question)).augmenter_pv(question.getNbPts());
             supr_question(question);
             if (level - question.getLevel() >= 1) {
