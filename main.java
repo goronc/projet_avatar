@@ -83,6 +83,38 @@ public class main {
 
         while(running){
             do {
+                Scanner Choix = new Scanner(System.in);
+                System.out.println("1 - S'insrire");
+                System.out.println("2 - Se connecter");
+                System.out.println("Entrez ce que vous voulez faire : ");
+                String user_choix = Choix.nextLine();
+                String choix_possibles = "12";
+                while(!choix_possibles.contains(String.valueOf(user_choix))){
+                    System.out.println("Option non disponible");
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        // Ignorer l'exception
+                    }
+                    System.out.println("1 - S'insrire");
+                    System.out.println("2 - Se connecter");
+                    System.out.println("Entrez ce que vous voulez faire : ");
+                    user_choix = Choix.nextLine();
+                }
+                if (user_choix.equals("1")) {
+                    Scanner pseudo = new Scanner(System.in);
+                    Scanner mdp = new Scanner(System.in);
+                    System.out.println("Entrez votre pseudo");
+                    String user_pseudo_choix = pseudo.nextLine();
+                    System.out.println("Entrez votre mot de passe");
+                    String user_mdp_choix = mdp.nextLine();
+                    Avatar avatar = new Avatar();
+                    avatar.setPseudo(user_pseudo_choix);
+                    avatar.setmdp(user_mdp_choix);
+                    liste_pseudo.add(user_pseudo_choix);
+                    liste_mdp.add(user_mdp_choix);
+                    avatars.add(avatar);
+                }
                 running2 = true;
                 System.out.print("Entrez votre pseudo : ");
                 user_pseudo = scanner_pseudo.nextLine();
@@ -93,6 +125,7 @@ public class main {
                 } catch (ChaineNonTrouveeException e) {
                     System.out.println("le Pseudo '" + e.getChaine() + "' n'a pas été trouvée !");
                 }
+                
             } while (!liste_pseudo.contains(user_pseudo));
 
             for(int i = 0; i<avatars.size();i++){
@@ -198,7 +231,6 @@ public class main {
                                 String  new_mdp = scanner_new_mdp.nextLine();
                                 avatars.get(Integer.parseInt(admin_choice_avatar)-1).setmdp(new_mdp);
                             }
-                            
 
                         }
                         else if(admin_choice.equals("q")){
@@ -298,6 +330,9 @@ public class main {
                             avatar.erreur_faire_question();
                         }
                         else if(user_choice.equals("3")){
+                            ListeQuestion liste_question = new ListeQuestion(questions);
+                            Test test = avatar.creer_test(liste_question);
+                            avatar.recevoir_test(test);
                             avatar.erreur_faire_test();
                         }
                         else if(user_choice.equals("4")){
