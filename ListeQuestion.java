@@ -19,6 +19,14 @@ public class ListeQuestion implements Serializable {
     }
 
     /**
+     * Constructeur par défaut de la classe ListeQuestion.
+     * Initialise une liste de questions vide.
+     */
+    public ListeQuestion(ArrayList<Question> newliste) {
+        List_question = newliste;
+    }
+
+    /**
      * Retourne la liste de questions.
      *
      * @return la liste de questions
