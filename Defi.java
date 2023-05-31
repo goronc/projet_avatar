@@ -74,10 +74,10 @@ public class Defi implements Serializable {
      * @return la question choisie
      */
     public Question choix_question(ListeQuestion liste_question) {
-        Random rand = new Random();
-        int indice = rand.nextInt(liste_question.size());
+        Random random = new Random();
+        int indice = random.nextInt(liste_question.size());
         while (Avatar2.getQuestionAttente().contains(liste_question.getListeQuestions(indice))) {
-            indice = rand.nextInt(liste_question.size());
+            indice = random.nextInt(liste_question.size());
         }
         Question res_question = liste_question.getListeQuestions(indice);
         return res_question;

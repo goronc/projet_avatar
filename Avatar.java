@@ -36,7 +36,7 @@ public class Avatar implements Serializable {
      * Initialise les attributs avec des valeurs par défaut.
      */
     public Avatar() {
-        pts_vie = 1;
+        pts_vie = 20;
         pseudo = "Inconnu";
         note = new Bulletin();
         level = 1;
